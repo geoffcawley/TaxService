@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TaxLibrary.Models;
 
-namespace TaxService.Models
+namespace TaxLibrary.Models
 {
     public class Order : IOrder
     {
@@ -16,15 +16,15 @@ namespace TaxService.Models
         public string to_state { get; set; }
         public float amount { get; set; }
         public float shipping { get; set; }
-        public Line_Items[] line_items { get; set; }
+        public OrderLineItem[] line_items { get; set; }
 
-        public float GetTotal()
+        public float GetTotalBeforeShipping()
         {
-            return line_items.Select(i => i.unit_price * i.quantity).Sum();
+            return line_items.Length > 0 ? line_items.Select(i => i.unit_price * i.quantity).Sum() : amount;
         }
     }
 
-    public class Line_Items
+    public class OrderLineItem
     {
         public int quantity { get; set; }
         public float unit_price { get; set; }

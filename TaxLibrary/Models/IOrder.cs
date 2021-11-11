@@ -6,6 +6,7 @@ namespace TaxLibrary.Models
 {
     public interface IOrder
     {
-        float GetTotal();
+        float GetTotalBeforeShipping();
+
     }
 }
